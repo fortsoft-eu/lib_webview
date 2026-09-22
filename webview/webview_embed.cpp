@@ -32,12 +32,14 @@ base::options::toggle OptionWebviewDebugEnabled({
 	.id = kOptionWebviewDebugEnabled,
 	.name = "Enable webview inspecting",
 	.description = "Right click and choose Inspect in the webview windows. (on macOS launch Safari, open from Develop menu)",
+	.defaultValue = false,
 });
 
 base::options::toggle OptionWebviewLegacyEdge({
 	.id = kOptionWebviewLegacyEdge,
 	.name = "Force legacy Edge WebView",
 	.description = "Skip modern CoreWebView2 check and force using legacy Edge WebView on Windows.",
+	.defaultValue = false,
 	.scope = base::options::windows,
 	.restartRequired = true,
 });

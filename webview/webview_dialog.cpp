@@ -209,13 +209,13 @@ PopupResult ShowBlockingPopup(PopupArgs &&args) {
 					*args.value),
 				st::boxRowPadding + QMargins(0, 0, 0, skip))
 			: nullptr;
-		const auto buttonPadding = st::webviewDialogPadding;
+		const auto buttonPadding = st::defaultBox.buttonPadding;
 		const auto buttons = container->add(
 			object_ptr<Ui::RpWidget>(container),
 			QMargins(
-				buttonPadding.left(),
+				buttonPadding.right(),
 				buttonPadding.top(),
-				buttonPadding.left(),
+				buttonPadding.right(),
 				buttonPadding.bottom()));
 		const auto list = buttons->lifetime().make_state<
 			std::vector<not_null<Ui::RoundButton*>>
@@ -250,7 +250,7 @@ PopupResult ShowBlockingPopup(PopupArgs &&args) {
 			list->push_back(button);
 		}
 
-		buttons->resizeToWidth(st::boxWideWidth - 2 * buttonPadding.left());
+		buttons->resizeToWidth(st::boxWideWidth - 2 * buttonPadding.right());
 		buttons->widthValue(
 		) | rpl::on_next([=](int width) {
 			const auto count = list->size();
@@ -260,7 +260,7 @@ PopupResult ShowBlockingPopup(PopupArgs &&args) {
 				buttonsWidth += button->width() + (buttonsWidth ? skip : 0);
 			}
 			const auto vertical = (count > 1) && (buttonsWidth > width);
-			const auto single = st::webviewDialogSubmit.height;
+			const auto single = st::webviewDialogButton.height;
 			auto top = 0;
 			auto right = 0;
 			for (const auto &button : *list) {
@@ -448,13 +448,13 @@ void ShowPopupAsync(
 					*popup.value),
 				st::boxRowPadding + QMargins(0, 0, 0, skip))
 			: nullptr;
-		const auto buttonPadding = st::webviewDialogPadding;
+		const auto buttonPadding = st::defaultBox.buttonPadding;
 		const auto buttons = container->add(
 			object_ptr<Ui::RpWidget>(container),
 			QMargins(
-				buttonPadding.left(),
+				buttonPadding.right(),
 				buttonPadding.top(),
-				buttonPadding.left(),
+				buttonPadding.right(),
 				buttonPadding.bottom()));
 		const auto list = buttons->lifetime().make_state<
 			std::vector<not_null<Ui::RoundButton*>>
@@ -489,7 +489,7 @@ void ShowPopupAsync(
 			list->push_back(button);
 		}
 
-		buttons->resizeToWidth(st::boxWideWidth - 2 * buttonPadding.left());
+		buttons->resizeToWidth(st::boxWideWidth - 2 * buttonPadding.right());
 		buttons->widthValue(
 		) | rpl::on_next([=](int width) {
 			const auto count = list->size();
@@ -499,7 +499,7 @@ void ShowPopupAsync(
 				buttonsWidth += button->width() + (buttonsWidth ? skip : 0);
 			}
 			const auto vertical = (count > 1) && (buttonsWidth > width);
-			const auto single = st::webviewDialogSubmit.height;
+			const auto single = st::webviewDialogButton.height;
 			auto top = 0;
 			auto right = 0;
 			for (const auto &button : *list) {
